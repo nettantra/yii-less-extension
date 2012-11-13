@@ -11,7 +11,7 @@ Requires Yii 1.1 or above.
 * Download and extract the extension package to `protected/extensions` directory of your application.
 * Make the following modifications to your `protected/config/main.php` under the components section of the config:
 ~~~
-[php]
+<?php 
 array(
   // .....
   'components'=>array(
@@ -23,12 +23,13 @@ array(
   ),
   // .....
 ),
+?>
 ~~~
+
 * In any of your view files just include your less file using `Yii::app()->clientScript->registerLessFile("full-or-relative-path-to-your-less-file/style.less");`
 
 Eg: 
 ~~~
-[php]
 <?php Yii::app()->clientScript->registerLessFile(Yii::getPathOfAlias("less-files/site.less"); ?>
 ~~~
 Adding the above in your `layouts/main.php` will render `<web-application-root>/less-files/site.less` file as `site.css` delivered from your assets.
