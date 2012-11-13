@@ -1,5 +1,5 @@
-Yii Less Extension
-==================
+Yii Less Extension 0.1
+======================
 
 Yii Less Extension gives a _VERY_ simple and straight forward way to include LESS files in your Yii view files. Yii Less Extension adds a method to the `CClientScript` class, namely `registerLessFile` which is very similary to the `registerCssFile` method, to directly link LESS files in your Yii view files.
 
