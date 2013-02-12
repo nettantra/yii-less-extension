@@ -46,6 +46,7 @@ Eg:
     }
 '); ?>
 ~~~
+generates:
 ~~~
 <style type="text/css">
 /*<![CDATA[*/
