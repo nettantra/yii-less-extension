@@ -29,7 +29,9 @@ Requires Yii 1.1 or above.
 
 * In any of your view files just include your less file using `Yii::app()->clientScript->registerLessFile("full-or-relative-path-to-your-less-file/style.less");`
 
-Eg:
+##Examples
+
+
 * Adding the following in your `layouts/main.php` will render `<web-application-root>/less-files/site.less` file as `site.css` delivered from your assets.
 ~~~
 <?php Yii::app()->clientScript->registerLessFile(Yii::getPathOfAlias("less-files/site.less")); ?>
