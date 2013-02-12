@@ -15,10 +15,11 @@
 require_once(dirname(dirname(__FILE__))."/lib/lessphp/lessc.inc.php");
 
 class YiiLessCClientScript extends CClientScript {
+  public $cache = true;
   public function registerLessFile($url, $media='') {
     $this->hasScripts=true;
     $lessUrl = $url;
-    
+
     $uniqid = md5($lessUrl);
 
     $lessFileName = basename($lessUrl);
@@ -26,7 +27,7 @@ class YiiLessCClientScript extends CClientScript {
     $tempCachePath = Yii::getPathOfAlias('application.runtime.cache') . "/yiiless/{$uniqid}";
     @mkdir($tempCachePath, 0777, true);
     $cssFilePath = "{$tempCachePath}/{$cssFileName}";
-    
+
     if(preg_match('/^https?\:\/\//', $lessUrl)) {
       $lessFilePath = "{$tempCachePath}/{$lessFileName}";
     } else if(file_exists( Yii::getPathOfAlias('webroot')."/{$lessUrl}" )) {
@@ -36,15 +37,20 @@ class YiiLessCClientScript extends CClientScript {
     } else {
       $lessFilePath = $_SERVER['DOCUMENT_ROOT'] ."/". $lessUrl;
     }
-    
+
     $less = new lessc();
-    $less->checkedCompile($lessFilePath, $cssFilePath);
-    
+
+    if ($this->cache === false) {
+      $less->compileFile($lessFilePath, $cssFilePath);
+    } else {
+      $less->checkedCompile($lessFilePath, $cssFilePath);
+    }
+
     $cssUrl = Yii::app()->getAssetManager()->publish($cssFilePath);
-    
+
     $this->cssFiles[$cssUrl]=$media;
     $params=func_get_args();
-    
+
     $this->recordCachingAction('clientScript', 'registerLessFile', $params);
     return $this;
   }
