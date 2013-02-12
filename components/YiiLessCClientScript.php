@@ -37,8 +37,8 @@ class YiiLessCClientScript extends CClientScript {
       $lessFilePath = $_SERVER['DOCUMENT_ROOT'] ."/". $lessUrl;
     }
     
-    $less = new lessc();
-    $less->checkedCompile($lessFilePath, $cssFilePath);
+    $lessCompiler = new lessc();
+    $lessCompiler->checkedCompile($lessFilePath, $cssFilePath);
     
     $cssUrl = Yii::app()->getAssetManager()->publish($cssFilePath);
     
@@ -47,6 +47,11 @@ class YiiLessCClientScript extends CClientScript {
     
     $this->recordCachingAction('clientScript', 'registerLessFile', $params);
     return $this;
+  }
+  public function registerLess($id, $less, $media='') {
+    $lessCompiler = new lessc();
+    $css = $lessCompiler->compile($less, $id);
+    return parent::registerCss($id, $css, $media);
   }
 }
 
