@@ -50,12 +50,12 @@ generates:
 ~~~
 <style type="text/css">
 /*<![CDATA[*/
-body {
-    padding: 0px;
-}
-body .container {
-    margin: 0px;
-}
+    body {
+        padding: 0px;
+    }
+    body .container {
+        margin: 0px;
+    }
 /*]]>*/
 </style>
 ~~~
