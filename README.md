@@ -13,15 +13,16 @@ Requires Yii 1.1 or above.
 ~~~
 <?php 
 array(
-  // .....
-  'components'=>array(
     // .....
-    'clientScript' => array(
-      'class' => 'ext.yiiless.components.YiiLessCClientScript',
+    'components'=>array(
+        // .....
+        'clientScript' => array(
+            'class' => 'ext.yii-less-extension.components.YiiLessCClientScript',
+            'cache' => true, // Optional parameter to enable or disable LESS File Caching
+        ),
+        // .....
     ),
     // .....
-  ),
-  // .....
 ),
 ?>
 ~~~
@@ -30,9 +31,34 @@ array(
 
 Eg: 
 ~~~
-<?php Yii::app()->clientScript->registerLessFile(Yii::getPathOfAlias("less-files/site.less"); ?>
+<?php Yii::app()->clientScript->registerLessFile(Yii::getPathOfAlias("less-files/site.less")); ?>
 ~~~
 Adding the above in your `layouts/main.php` will render `<web-application-root>/less-files/site.less` file as `site.css` delivered from your assets.
+
+~~~
+<?php Yii::app()->clientScript->registerLess('sample-less', '
+    body {
+        padding: 0px;
+        .container {
+            margin: 10px;
+        }
+    }
+'); ?>
+~~~
+The above will render the following style tag:
+
+~~~
+<style type="text/css">
+/*<![CDATA[*/
+body {
+    padding: 0px;
+}
+body .container {
+    margin: 0px;
+}
+/*]]>*/
+</style>
+~~~
 
 ##Resources
 
