@@ -12,29 +12,29 @@ Requires Yii 1.1 or above.
 * Make the following modifications to your `protected/config/main.php` under the components section of the config:
 ~~~
 <?php 
-array(
-    // .....
-    'components'=>array(
+    return array(
         // .....
-        'clientScript' => array(
-            'class' => 'ext.yii-less-extension.components.YiiLessCClientScript',
-            'cache' => true, // Optional parameter to enable or disable LESS File Caching
+        'components'=>array(
+            // .....
+            'clientScript' => array(
+                'class' => 'ext.yii-less-extension.components.YiiLessCClientScript',
+                'cache' => true, // Optional parameter to enable or disable LESS File Caching
+            ),
+            // .....
         ),
         // .....
     ),
-    // .....
-),
 ?>
 ~~~
 
 * In any of your view files just include your less file using `Yii::app()->clientScript->registerLessFile("full-or-relative-path-to-your-less-file/style.less");`
 
-Eg: 
+Eg:
+* Adding the following in your `layouts/main.php` will render `<web-application-root>/less-files/site.less` file as `site.css` delivered from your assets.
 ~~~
 <?php Yii::app()->clientScript->registerLessFile(Yii::getPathOfAlias("less-files/site.less")); ?>
 ~~~
-Adding the above in your `layouts/main.php` will render `<web-application-root>/less-files/site.less` file as `site.css` delivered from your assets.
-
+* The following code will render its corresponding CSS as shown
 ~~~
 <?php Yii::app()->clientScript->registerLess('sample-less', '
     body {
@@ -45,7 +45,6 @@ Adding the above in your `layouts/main.php` will render `<web-application-root>/
     }
 '); ?>
 ~~~
-The above will render the following style tag:
 
 ~~~
 <style type="text/css">
